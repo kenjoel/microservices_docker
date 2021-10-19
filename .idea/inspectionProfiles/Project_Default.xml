@@ -1,0 +1,44 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="3">
+            <item index="0" class="java.lang.String" itemvalue="pytest" />
+            <item index="1" class="java.lang.String" itemvalue="alembic" />
+            <item index="2" class="java.lang.String" itemvalue="crackmapexec" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPep8Inspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="E303" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="sqlalchemy.orm.decl_api.DeclarativeMeta.metadata" />
+          <option value="db.db_postgresql_.UserTable.__table__" />
+          <option value="fastapi_users.db.MongoDBUserDatabase" />
+          <option value="fastapi_users.fastapi_users.current_user" />
+          <option value="db.db_sqlite.UserTable.__table__" />
+          <option value="db.db_sqlite.OAuthAccount.__table__" />
+          <option value="test.db.UserTable.__table__" />
+          <option value="test.db.OAuthAccount.__table__" />
+          <option value="backend.app.database.db.UserTable.__table__" />
+          <option value="backend.app.database.db.OAuthAccount.__table__" />
+          <option value="backend.app.database.db.User.__table__" />
+          <option value="backend.app.models.models.OAuthAccount.__table__" />
+          <option value="backend.app.models.models.User.__table__" />
+          <option value="backend.app.database.models.User.__table__" />
+          <option value="backend.app.database.models.OAuthAccount.__table__" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
