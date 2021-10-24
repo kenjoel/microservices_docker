@@ -1,10 +1,12 @@
+from random import random
+
 from django.shortcuts import render
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from admin.products.models import Products
-from admin.products.serializers import ProductSerializer
+from .models import Products, User
+from .serializers import ProductSerializer
 
 
 class ProductViewSet(viewsets.ViewSet):
@@ -16,7 +18,7 @@ class ProductViewSet(viewsets.ViewSet):
 
     def create(self, request):
         serializer = ProductSerializer(data=request.data)
-        serializer.is_valid()
+        serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
@@ -40,9 +42,14 @@ class ProductViewSet(viewsets.ViewSet):
             item.delete()
         else:
             return "No such item"
-        return Response(item.data, status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class UserAPIView(APIView):
-    pass
+    def get(self, _):
+        users = User.objects.all()
+        user = random.choice(users)
+        return Response({
+            'id': user.id
+        })
 

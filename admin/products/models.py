@@ -8,7 +8,7 @@ from django.db import models
 class Products(models.Model):
     name = models.CharField(max_length=20)
     image = models.CharField(max_length=100)
-    likes = models.PositiveIntegerField()
+    likes = models.PositiveIntegerField(default=0)
 
 
 class User(models.Model):
