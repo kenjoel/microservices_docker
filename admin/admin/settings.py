@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-mi2_aualm3l$!%u-@ia$r$9+7$6uctc$r1z1qq+z(#tn+x*l5i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0:8000', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'localhost', "0.0.0.0:8000"]
 
 # Application definition
 
@@ -79,7 +79,7 @@ DATABASES = {
         'NAME': 'root',
         'USER': 'root',
         'PASSWORD': 'root',
-        'HOST': 'localhost',  # change this to db when using docker compose
+        'HOST': 'db',  # change this to db when using docker compose up
         'PORT': '5432'
     }
 }

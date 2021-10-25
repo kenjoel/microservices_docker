@@ -5,6 +5,3 @@ WORKDIR /app
 COPY requirements.txt /app/requirements.txt
 RUN pip install -r requirements.txt
 COPY . /app
-
-# command to run on container start
-CMD "python manage.py runserver"
