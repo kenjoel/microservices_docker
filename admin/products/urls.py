@@ -5,6 +5,7 @@ urlpatterns = [
     path('products/', ProductViewSet.as_view({
         'get': 'list',
         'post': 'create',
+        'delete': 'exterminate'
     })),
 
     path('products/<str:pk>', ProductViewSet.as_view({

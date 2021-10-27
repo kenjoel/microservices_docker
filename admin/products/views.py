@@ -49,6 +49,12 @@ class ProductViewSet(viewsets.ViewSet):
             return "No such item"
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+    def exterminate(self, request):
+        items = Products.objects.all()
+        items.delete()
+        return Response(status=status.HTTP_410_GONE)
+
+
 
 class UserAPIView(APIView):
     def get(self, _):
