@@ -14,7 +14,7 @@ class ProductViewSet(viewsets.ViewSet):
     def list(self, request):
         products = Products.objects.all()
         serializer = ProductSerializer(products, many=True)
-        publish()
+        publish("Products List", serializer.data)
         return Response(serializer.data)
 
 
