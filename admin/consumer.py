@@ -18,5 +18,5 @@ channel.basic_consume(queue="admin", on_message_callback=callback, auto_ack=Fals
 
 print("Launched")
 
-channel.start_consuming()
+# channel.start_consuming()
 channel.close()

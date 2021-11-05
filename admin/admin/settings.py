@@ -28,6 +28,14 @@ ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'localhost', "0.0.0.0:8000"]
 
 # Application definition
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        'knox.auth.TokenAuthentication',
+    ]
+}
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -37,10 +45,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'products',
     'rest_framework',
-    'corsheaders'
+    'corsheaders',
+    'knox'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -120,6 +130,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

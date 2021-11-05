@@ -24,14 +24,7 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes>
-      <connection connection-id="3b6c9dd2-5808-4500-b016-fcd0a12f6610">
-        <schema name="information_schema" object-types="table, view, sequence, function" />
-        <schema name="pg_catalog" object-types="table, view, sequence, function" />
-        <schema name="pg_toast" object-types="table, view, sequence, function" />
-        <schema name="public" object-types="table, view, sequence, function" />
-      </connection>
-    </loaded-nodes>
+    <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="3b6c9dd2-5808-4500-b016-fcd0a12f6610">
@@ -89,7 +82,7 @@
           <database value="postgres" />
           <type value="USER_PASSWORD" />
           <user value="root" />
-          <deprecated-pwd value="cm9vdA==" />
+          <deprecated-pwd value="" />
         </database>
         <properties>
           <auto-commit value="false" />
