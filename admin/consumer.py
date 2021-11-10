@@ -1,6 +1,13 @@
+import os
+import django
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', "admin.settings")
 import json
 
 import pika
+
+
+
+
 
 from products.models import Products
 
