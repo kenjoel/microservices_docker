@@ -1,5 +1,5 @@
-from django.contrib.auth.models import User
 from rest_framework import serializers
+from rest_framework.views import APIView
 
 from .models import Products
 
@@ -9,7 +9,6 @@ class ProductSerializer(serializers.ModelSerializer):
     title = serializers.CharField(max_length=20)
     image = serializers.CharField(max_length=100)
     likes = serializers.IntegerField(default=0)
-    owner = serializers.ReadOnlyField(source='owner.username')
 
 
     def create(self, validated_data):
@@ -28,11 +27,5 @@ class ProductSerializer(serializers.ModelSerializer):
 
 
 
-class UserSerializer(serializers.ModelSerializer):
-    products = serializers.PrimaryKeyRelatedField(many=True, queryset=Products.objects.all())
-
-    class Meta:
-        model = User
-        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'products')
-        extra_kwargs = {'password': {'write_only': True}}
-
+class UserSerializer(APIView):
+    pass

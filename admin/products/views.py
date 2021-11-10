@@ -1,11 +1,11 @@
-from django.contrib.auth.models import User
-from knox.models import AuthToken
-from rest_framework import viewsets, status, generics
+import random
+from rest_framework import viewsets, status
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
-from .models import Products
+from .models import Products, User
 from .producer import publish
-from .serializers import ProductSerializer, UserSerializer
+from .serializers import ProductSerializer
 
 
 class ProductViewSet(viewsets.ViewSet):
@@ -18,7 +18,7 @@ class ProductViewSet(viewsets.ViewSet):
     def create(self, request):
         serializer = ProductSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save(owner=self.request.user)
+        serializer.save()
         publish("Product Added", serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
@@ -54,46 +54,11 @@ class ProductViewSet(viewsets.ViewSet):
 
 
 
-class UserViewSet(viewsets.ViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
 
-    def list(self, request):
+class UserAPIView(APIView):
+    def get(self, _):
         users = User.objects.all()
-        serializer = UserSerializer(users, many=True)
-        return Response(serializer.data)
-
-    def create(self, request):
-        serializer = UserSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response({"User":serializer.data, "status":status.HTTP_201_CREATED, "token":AuthToken.objects.create(
-            serializer)[1]
-            })
-
-    def retrieve(self, request, pk=None):
-        item = User.objects.get(id=pk)
-        found = UserSerializer(item, many=False)
-        return Response(found.data)
-
-    def update(self, request, pk=None):
-        item = User.objects.get(id=pk)
-        serializer = UserSerializer(instance=item, data=request.data)
-        serializer.is_valid()
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
-
-    def destroy(self, request, pk=None):
-        item = User.objects.get(id=pk)
-        if item:
-            item.delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        else:
-            return "No such item"
-
-    def exterminate(self, request):
-        items = User.objects.all()
-        items.delete()
-        return Response(status=status.HTTP_410_GONE)
-
-
+        user = random.choice(users)
+        return Response({
+            "id": user.id
+        })
