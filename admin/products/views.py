@@ -31,8 +31,9 @@ class ProductViewSet(viewsets.ViewSet):
         item = Products.objects.get(id=pk)
         serializer = ProductSerializer(instance=item, data=request.data)
         serializer.is_valid()
-        serializer.save(owner=self.request.user)
+        serializer.save()
         publish("Product Updated", serializer.data)
+        print(serializer.data)
         return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
 
     def destroy(self, request, pk=None):

@@ -1,9 +1,5 @@
-import os
-
-from dotenv import load_dotenv
-import json, pika
-
-
+import json
+import pika
 
 params = pika.URLParameters("amqps://vfchomdw:1a3bInD6To-Z7MOlDXamu0u8cbY3hYkR@hornet.rmq.cloudamqp.com/vfchomdw")
 

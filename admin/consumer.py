@@ -1,14 +1,12 @@
 import os
+
 import django
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', "admin.settings")
 django.setup()
 import json
 
 import pika
-
-
-
-
 
 from products.models import Products
 
@@ -29,9 +27,6 @@ def callback(channel, method, properties, body):
     product = Products.objects.get(id=id)
     product.likes = product.likes + 1
     product.save()
-
-    print("Like Received")
-
 
 
 channel.basic_consume(queue="admin", on_message_callback=callback, auto_ack=False)
